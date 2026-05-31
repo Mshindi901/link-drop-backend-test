@@ -48,7 +48,7 @@ export default class userService{
             if(!isPassword){
                 return {success: false, message: 'Invalid Password'}
             };
-            const signToken = jwt.sign({id: isUser.id, email: isUser.email}, process.env.JWT_TOKEN, {expiresIn: '1h'});
+            const signToken = jwt.sign({id: isUser.id, email: isUser.email, role: isUser.role}, process.env.JWT_TOKEN, {expiresIn: '1h'});
             
             return {message: 'Logged in successfully', data: signToken, success: true, user: isUser}
         } catch (error) {
