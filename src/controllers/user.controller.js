@@ -47,10 +47,10 @@ export const signIn = async(req, res) => {
         };
         const user_signed_in = await user_service.signIn(email, password);
         if(!user_signed_in.success){
-            return res.status(404).json({
+            return res.status(400).json({
                 success: false,
                 message: 'Failed to sign in user',
-                error: user_signed_in.message
+                error: user_signed_in.error
             });
         };
         return res.status(200).json({
