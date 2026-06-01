@@ -20,10 +20,16 @@ export const newFile = async(req, res) => {
     try {
         const {file_name, file_password} = req.body;
         const file = req.file;
-        if(!file_name || !file){
+        if(!file_name || !file_name.trim()){
             return res.status(400).json({
                 success: false,
-                message: 'Provide File Name'
+                message: 'File name is required'
+            })
+        };
+        if(!file){
+            return res.status(400).json({
+                success: false,
+                message: 'File is required'
             })
         };
         const userId = req.user.id
