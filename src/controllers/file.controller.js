@@ -41,15 +41,12 @@ export const newFile = async(req, res) => {
             return res.status(404).json({
                 success: false,
                 message: 'Error with creating new file',
-                error: file.message
+                error: File.message
             })
         };
-        res.status(200).json({
-            success: true,
-            message: 'File Created'
-        })
-        //after file creation I created the link too
-        const new_link = await link_service.creatingNewLink(file.data.share_id, file.data.id);
+        
+        //after file creation I create the link too
+        const new_link = await link_service.creatingNewLink(File.data.share_id, File.data.id);
         if(!new_link){
             return res.status(404).json({
                 success: false,
@@ -60,7 +57,8 @@ export const newFile = async(req, res) => {
 
         return res.status(200).json({
             success: true,
-            message: 'File Created with link'
+            message: 'File Created with link',
+            data: File.data
         })
 
        
