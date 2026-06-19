@@ -16,6 +16,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const PORT = process.env.PORT;
+const HOST = process.env.IP|| '0.0.0.0';
 const app = express();
 
 // Create uploads directory if it doesn't exist
@@ -32,7 +33,7 @@ app.use('/api', fileRoutes);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.listen(PORT, () => {
+app.listen(PORT,HOST, () => {
     connectDB();
     console.log(`Server is running on port ${PORT}`);
 });
